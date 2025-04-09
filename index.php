@@ -1,5 +1,6 @@
 <?php 
 require ("logica/Especialidad.php");
+require "logica/Medico.php";
 ?>
 
 
@@ -110,15 +111,29 @@ require ("logica/Especialidad.php");
 					<div class="card-body">
         				<?php 
         				$especialidad = new Especialidad();
+						$medico = new Medico();
         				$especialidades = $especialidad -> consultar();
-        				echo "<ul>";
+        				echo "<ul>
+						";
         				foreach($especialidades as $esp){
-        				    echo "<li>" . $esp -> getNombre();
+        				    echo "<li>" . $esp -> getNombre() ."
+							";
         				    // AQUI
-        				    
-        				    echo "</li>";
+							if($esp -> tieneMedicos() == true){
+								echo "<ul>";
+								$medico -> setIdEsp($esp -> getId());
+								$medicos = $medico -> consultarPorEspecialidad();
+								foreach($medicos as $m){
+									echo "<li>". $m -> getNombre() ." " . $m -> getApellido() ." </li>";	
+								}
+								echo "</ul>";
+							}
+							echo "
+								</li>
+								";
         				}
-        				echo "</ul>";
+        				echo "
+						</ul>";
         				?>			
     				</div>
 				</div>
