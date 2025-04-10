@@ -20,6 +20,7 @@ class MedicoDAO{
 
 
     public function consultarPorEspecialidad(){
-        return "select m.idMedico, m.nombre, m.apellido, m.correo, m.clave, m.foto from medico as m where Especialidad_id = " . $this -> idEsp . "";
+        return "select m.idMedico, m.nombre, m.apellido, m.correo, m.clave, m.foto from medico as m where Especialidad_id = " . $this -> idEsp . " order by m.nombre asc";
     }
+    
 }
