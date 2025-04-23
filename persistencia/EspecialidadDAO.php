@@ -16,7 +16,7 @@ class EspecialidadDAO{
     }
     
     public function tieneMedicos(){
-        return "select idMedico from medico where Especialidad_id = ". $this -> id;
+        return "select idMedico from Medico where Especialidad_id = ". $this -> id;
     }
     
 }

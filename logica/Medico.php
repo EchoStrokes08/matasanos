@@ -30,6 +30,8 @@ class Medico extends Persona{
                 $dato["5"]
             );
 
+            $medico -> setEsp($this -> esp);
+
             array_push($medicos, $medico);
         }
         $conexion -> cerrar();
@@ -39,5 +41,9 @@ class Medico extends Persona{
 
     public function setEsp( $esp ){
         $this->esp = $esp;
+    }
+
+    public function getEsp(){
+        return $this -> esp;
     }
 }

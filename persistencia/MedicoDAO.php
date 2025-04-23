@@ -6,21 +6,21 @@ class MedicoDAO{
     private $correo;
     private $clave;
     private $foto;
-    private $idEsp;
+    private $esp;
 
-    public function __construct($id = 0, $nombre = "", $apellido = "", $correo = "", $clave = "", $foto = "", $idEsp = ""){
+    public function __construct($id = 0, $nombre = "", $apellido = "", $correo = "", $clave = "", $foto = "", $esp = ""){
         $this -> id = $id;
         $this -> nombre = $nombre;
         $this -> apellido = $apellido;
         $this -> correo = $correo;
         $this -> clave = $clave;
         $this -> foto = $foto;
-        $this -> idEsp = $idEsp;
+        $this -> esp = $esp;
     }
 
 
     public function consultarPorEspecialidad(){
-        return "select m.idMedico, m.nombre, m.apellido, m.correo, m.clave, m.foto from medico as m where Especialidad_id = " . $this -> idEsp . " order by m.nombre asc";
+        return "select m.idMedico, m.nombre, m.apellido, m.correo, m.clave, m.foto from Medico as m where Especialidad_id = " . $this -> esp -> getId() . " order by m.apellido asc";
     }
     
 }
