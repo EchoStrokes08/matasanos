@@ -1,10 +1,10 @@
 <?php
-class Persona{
-    private $id;
-    private $nombre;
-    private $apellido;
-    private $correo;
-    private $clave;
+abstract class Persona{
+    protected $id;
+    protected $nombre;
+    protected $apellido;
+    protected $correo;
+    protected $clave;
 
     public function __construct($id = 0, $nombre = "", $apellido = "", $correo = "", $clave = ""){
         $this -> id = $id;

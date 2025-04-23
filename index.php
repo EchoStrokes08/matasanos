@@ -118,10 +118,9 @@ require "logica/Medico.php";
         				foreach($especialidades as $esp){
         				    echo "<li>" . $esp -> getNombre() ."
 							";
-        				    // AQUI
 							if($esp -> tieneMedicos() == true){
 								echo "<ul>";
-								$medico -> setIdEsp($esp -> getId());
+								$medico -> setEsp($esp);
 								$medicos = $medico -> consultarPorEspecialidad();
 								foreach($medicos as $m){
 									echo "<li>". $m -> getNombre() ." " . $m -> getApellido() ." </li>";	

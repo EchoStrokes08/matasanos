@@ -5,19 +5,20 @@ require "persistencia/MedicoDAO.php";
 class Medico extends Persona{
 
     private $foto;
-    private $idEsp;
-    public function __construct($id = 0, $nombre = "", $apellido = "", $correo = "", $clave = "", $foto = "", $idEsp = ""){
+    private $esp;
+    public function __construct($id = 0, $nombre = "", $apellido = "", $correo = "", $clave = "", $foto = "", $esp = ""){
         parent::__construct($id, $nombre, $apellido, $correo, $clave);
         $this->foto = $foto;
-        $this->idEsp = $idEsp;
+        $this->esp = $esp;
     }
+
     public function consultarPorEspecialidad(){
         $medicos = array();
         $conexion = new Conexion();
         $conexion -> abrir();
 
-        $dDao = new MedicoDAO(idEsp: $this->idEsp);
-        $conexion -> ejecutar($dDao -> consultarPorEspecialidad());
+        $mDao = new MedicoDAO(esp: $this->esp);
+        $conexion -> ejecutar($mDao -> consultarPorEspecialidad());
         while(($dato = $conexion -> registro()) != null){
             //Se toman los datos y se guardan dentro de doctores
             $medico = new Medico(
@@ -36,7 +37,7 @@ class Medico extends Persona{
         return $medicos;
     }
 
-    public function setIdEsp( $idEsp ){
-        $this->idEsp = $idEsp;
+    public function setEsp( $esp ){
+        $this->esp = $esp;
     }
 }
