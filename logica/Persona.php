@@ -24,6 +24,4 @@ abstract class Persona{
     public function getApellido(){
         return $this -> apellido;
     }
-
-    # ...
 }
