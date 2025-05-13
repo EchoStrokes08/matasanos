@@ -19,6 +19,8 @@ require "logica/Admin.php";
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- FontAwesome -->
 	<link href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" rel="stylesheet">
+	<!-- Icono -->
+	<link rel="icon" href="img/logo.png" type="image/png">
 </head>
 <?php
 $paginas_sin_sesion = [
