@@ -1,15 +1,17 @@
-<?php 
+<?php
 if(isset($_POST["autenticar"])){
     $correo = $_POST["correo"];
     $clave = $_POST["clave"];
     $admin = new Admin("", "", "", $correo, $clave);
     if($admin -> autenticar()){
         $_SESSION["id"] = $admin -> getId();
+		$_SESSION["rol"] = "admin";
         header("Location: ?pid=" . base64_encode("presentacion/sesionAdmin.php"));
     }else {
         $medico = new Medico("", "", "", $correo, $clave);
         if($medico -> autenticar()){
             $_SESSION["id"] = $medico -> getId();
+            $_SESSION["rol"] = "medico";
             header("Location: ?pid=" . base64_encode("presentacion/sesionMedico.php"));
         }else{
             echo "Mensaje de error";
