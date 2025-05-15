@@ -8,4 +8,3 @@ $medico = new Medico($id);
 $medico -> consultar();
 echo "Hola " . $medico -> getNombre() . " " . $medico -> getApellido();
 echo "<br> Usted tiene la especialidad: " . $medico -> getEspecialidad() -> getNombre();
-?>
