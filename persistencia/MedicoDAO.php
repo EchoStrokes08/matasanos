@@ -29,7 +29,7 @@ class MedicoDAO{
     public function autenticar(){
         return "select idMedico
                 from Medico
-                where correo = '" . $this -> correo . "' and '" . md5($this -> clave) . "'";
+                where correo = '" . $this -> correo . "' and clave = '" . md5($this -> clave) . "'";
     }
     
     public function consultar(){

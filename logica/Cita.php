@@ -43,11 +43,11 @@ class Cita{
         return $this -> consultorio;
     }
     
-    public function consultar(){
+    public function consultar($rol="", $id=""){
         $conexion = new Conexion();
         $citaDAO = new CitaDAO();
         $conexion -> abrir();
-        $conexion -> ejecutar($citaDAO -> consultar());
+        $conexion -> ejecutar($citaDAO -> consultar($rol, $id));
         $citas = array();
         while(($datos = $conexion -> registro()) != null){
             $paciente = new Paciente($datos[3], $datos[4], $datos[5]);
