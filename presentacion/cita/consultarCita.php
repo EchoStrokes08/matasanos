@@ -40,49 +40,34 @@ $citas = $cita->consultar($rol, $id);
 					<h4 class="card-title text-center">Citas</h4>
 				</div>
 				<div class="card-body">
-					<?php  if($rol == "admin") {echo "<form method='POST' action='?pid=" . base64_encode("presentacion/cita/consultarCita.php") . "'>"; } ?>
-						<table class='table table-striped table-hover'>
-						<tr><td>Id</td><td>Fecha</td><td>Hora</td>
-						<?php if($rol != "paciente"){ echo "<td>Paciente</td>"; } ?>
-						<?php if($rol != "medico"){ echo "<td>Medico</td>"; } ?>
-						<td>Consultorio</td><td>Estado</td></tr>
-
-						<?php
-						foreach($citas as $cit): ?>
-						<tr>
-							<td><?= $cit->getId(); ?></td>
-							<td><?= $cit->getFecha(); ?></td>
-							<td><?= $cit->getHora(); ?></td>
-							<?php if($rol != "paciente"): ?>
-								<td><?= $cit->getPaciente()->getNombre() . " " . $cit->getPaciente()->getApellido(); ?></td>
-								<?php endif; ?>
-								<?php if($rol != "medico"): ?>
-									<td><?= $cit->getMedico()->getNombre() . " " . $cit->getMedico()->getApellido(); ?></td>
-									<?php endif; ?>
-									<td><?= $cit->getConsultorio()->getNombre(); ?></td>
-									<?php if($rol == "admin"): ?>
-									<td>
-										<select class='form-select' name="estado[<?= $cit->getId(); ?>]">
-									<option value="<?= $cit->getEstadoCita()->getId(); ?>" selected><?= $cit->getEstadoCita()->getValor(); ?></option>
-									<?php foreach($cit->getEstadoCita()->consultarRestantes() as $ecr): ?>
-										<?php if($ecr->getId() != $cit->getEstadoCita()->getId()): ?>
-											<option value="<?= $ecr->getId(); ?>"><?= $ecr->getValor(); ?></option>
-										<?php endif; ?>
-									<?php endforeach; ?>
-								</select>
-							</td>
-							<?php else: ?>
-								<td><?= $cit->getEstadoCita()->getValor(); ?></td>
-							<?php endif; ?>
-						</tr>
-						<?php endforeach; ?>
-						</table>
-						<?php if($rol == "admin"): ?>
-						<p class="text-end">
-							<button type="submit" name="guardar" class="btn btn-primary">Guardar Cambios</button>
-						</p>
-						</form>
-						<?php endif; ?>
+    				<?php 
+    				$cita = new Cita();
+    				$citas = $cita -> consultar($rol, $id);
+    				echo "<table class='table table-striped table-hover'>";
+    				echo "<tr><td>Id</td><td>Fecha</td><td>Hora</td>";
+    				if($rol != "paciente"){
+    				    echo "<td>Paciente</td>";
+    				}
+    				if($rol != "medico"){
+    				    echo "<td>Medico</td>";
+    				}
+                    echo "<td>Consultorio</td></tr>";
+    				foreach($citas as $cit){
+    				    echo "<tr>";
+    				    echo "<td>" . $cit -> getId() . "</td>";
+    				    echo "<td>" . $cit -> getFecha() . "</td>";
+    				    echo "<td>" . $cit -> getHora() . "</td>";
+    				    if($rol != "paciente"){
+        				    echo "<td>" . $cit -> getPaciente() -> getNombre() . " " . $cit -> getPaciente() -> getApellido() . "</td>";
+    				    }
+    				    if($rol != "medico"){
+    				        echo "<td>" . $cit -> getMedico() -> getNombre() . " " . $cit -> getMedico() -> getApellido() . "</td>";
+    				    }
+                        echo "<td>" . $cit -> getConsultorio() -> getNombre() . "</td>";
+    				    echo "</tr>";
+    				}
+    				echo "</table>";
+    				?>			
 				</div>
 			</div>
 		</div>

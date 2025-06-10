@@ -29,4 +29,19 @@ class PacienteDAO{
                 from Paciente p
                 where idPaciente = '" . $this -> id . "'";
     }
+
+    public function buscar($filtro){
+        $sql = "select p.idPaciente, p.nombre, p.apellido, p.correo from Paciente p where ";
+        $filtro = explode(" ", trim( $filtro ));
+        foreach ($filtro as $palabra) {
+            $palabra = trim($palabra);
+            // Verificar si la palabra no está vacía
+            if (strlen($palabra) > 1) {
+                $sql .= "p.nombre like '%$palabra%' or p.apellido like '%$palabra%' or ";
+            }
+        }
+        $sql = substr($sql, 0, -3); // Eliminar el último 'or'
+        echo $sql;
+        return $sql;
+    }
 }
