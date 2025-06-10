@@ -10,7 +10,7 @@ function resaltar($texto, $filtro) {
     $texto = htmlspecialchars($texto, ENT_QUOTES, 'UTF-8');
     foreach ($filtros as $p) {
         $texto = preg_replace_callback(
-            "/" . preg_quote($p, "/") . "/i",
+            "/$p/i",
             fn($m) => "<strong>" . $m[0] . "</strong>",
             $texto
         );
